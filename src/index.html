@@ -14,14 +14,19 @@
     </h1>
 
     <form id="loginForm" class="flex flex-col items-center">
-      <input type="email" placeholder="Email" class="email mt-4 p-2 border border-gray-300 rounded" required>
-      <input type="password" placeholder="Password" class="password mt-4 p-2 border border-gray-300 rounded" required>
-  
-      <button type="reset" class="login-btn mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+      <input type="email" placeholder="Email" class="email mt-4 p-2 border border-gray-300 rounded">
+      <div class="error-message text-red-500 text-sm mt-1 hidden"></div>
+
+      <input type="password" placeholder="Password" class="password mt-4 p-2 border border-gray-300 rounded">
+      <div class="error-message text-red-500 text-sm mt-1 hidden"></div>
+
+      <button type="submit" class="login-btn mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
         Login
       </button>
     </form>
    
   </div>
+
+  <script src="main.js"></script>
 </body>
 </html>
