@@ -50,6 +50,7 @@ function passStrength(){
     var score = 0
     let password = passwordInput.value
 
+    //Length Checker
     if (password.length >= 8){
         score += 1
     }
@@ -58,4 +59,23 @@ function passStrength(){
         score += 1
     }
 
+    //Character Variety
+    var upperCase = /[A-Z]/.test(password)
+    var lowerCase = /[a-z]/.test(password)
+    var hasNumbers = /[0-9]/.test(password)
+    var hasChars = /[!@#$%^&*(),.?":{}|<>]/.test(password)
+
+    if (upperCase) score += 1;   //one line if statements precise and short
+    if (lowerCase) score += 1;
+    if (hasNumbers) score += 1;
+    if (hasChars) score += 1;
+
+    //Common Patterns
+    var commonPatterns = ["qwerty","1234","password","abcd"]
+
+    for (let i in commonPatterns){ // using in instead of ,of
+        if (password.lowerCase().includes(commonPatterns)){
+            
+        }
+    }
 }
