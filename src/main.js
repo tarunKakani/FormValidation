@@ -1,47 +1,61 @@
 const form = document.getElementById('loginForm');
-    const emailInput = document.querySelector('.email');
-    const passwordInput = document.querySelector('.password');
-    const errorMessages = document.querySelectorAll('.error-message');
+const emailInput = document.querySelector('.email');
+const passwordInput = document.querySelector('.password');
+const errorMessages = document.querySelectorAll('.error-message');
 
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        clearErrors();
+form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    clearErrors();
 
-        const email = emailInput.value.trim();
-        const password = passwordInput.value.trim();
+    const email = emailInput.value.trim();
+    const password = passwordInput.value.trim();
 
-        let hasError = false;
+    let hasError = false;
 
-        if (!isValidEmail(email)) {
-            showError(emailInput, 'Please enter a valid email address');
-            hasError = true;
-        }
-
-        if (password.length < 6) {
-            showError(passwordInput, 'Password must be at least 6 characters long');
-            hasError = true;
-        }
-
-        if (!hasError) {
-            alert('Form submitted successfully!');
-            form.reset();
-        }
-    });
-
-    function showError(input, message) {
-        const errorDiv = input.nextElementSibling;
-        errorDiv.textContent = message;
-        errorDiv.classList.remove('hidden');
-        input.classList.add('border-red-500');
+    if (!isValidEmail(email)) {
+        showError(emailInput, 'Please enter a valid email address');
+        hasError = true;
     }
 
-    function clearErrors() {
-        errorMessages.forEach(error => error.classList.add('hidden'));
-        const inputs = form.querySelectorAll('input');
-        inputs.forEach(input => input.classList.remove('border-red-500'));  
+    if (password.length < 6) {
+        showError(passwordInput, 'Password must be at least 6 characters long');
+        hasError = true;
     }
 
-    function isValidEmail(email) {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
+    if (!hasError) {
+        alert('Form submitted successfully!');
+        form.reset();
     }
+});
+
+function showError(input, message) {
+    const errorDiv = input.nextElementSibling;
+    errorDiv.textContent = message;
+    errorDiv.classList.remove('hidden');
+    input.classList.add('border-red-500');
+}
+
+function clearErrors() {
+    errorMessages.forEach(error => error.classList.add('hidden'));
+    const inputs = form.querySelectorAll('input');
+    inputs.forEach(input => input.classList.remove('border-red-500'));
+}
+
+function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+function passStrength(){
+    var score = 0
+    let password = passwordInput.value
+
+    if (password.length >= 8){
+        score += 1
+    }
+
+    if (password.length >= 12){
+        score += 1
+    }
+
+}
