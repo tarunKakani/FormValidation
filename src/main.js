@@ -17,10 +17,11 @@ form.addEventListener('submit', function (e) {
         hasError = true;
     }
 
-    if (password.length < 6) {
-        showError(passwordInput, 'Password must be at least 6 characters long');
-        hasError = true;
-    }
+    passStrength()
+    // if (password.length < 6) {
+    //     showError(passwordInput, 'Password must be at least 6 characters long');
+    //     hasError = true;
+    // }
 
     if (!hasError) {
         alert('Form submitted successfully!');
@@ -42,7 +43,7 @@ function clearErrors() {
 }
 
 function isValidEmail(email) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; //imp
     return emailRegex.test(email);
 }
 
@@ -63,7 +64,7 @@ function passStrength(){
     var upperCase = /[A-Z]/.test(password)
     var lowerCase = /[a-z]/.test(password)
     var hasNumbers = /[0-9]/.test(password)
-    var hasChars = /[!@#$%^&*(),.?":{}|<>]/.test(password)
+    var hasChars = /[!@#$%^&*(),.?":{}|<>]/.test(password) //imp
 
     if (upperCase) score += 1;   //one line if statements precise and short
     if (lowerCase) score += 1;
@@ -73,9 +74,28 @@ function passStrength(){
     //Common Patterns
     var commonPatterns = ["qwerty","1234","password","abcd"]
 
-    for (let i in commonPatterns){ // using in instead of ,of
+    for (let i of commonPatterns){ // why not in instead of, of
         if (password.lowerCase().includes(commonPatterns)){
-            
+            score -= 1;
+            break;
         }
     }
+
+    let strength;
+
+    if (score <= 2){
+        strength = "Weak";
+    } else if(score <= 4){
+        strength = "Moderate";
+    } else if(score <= 6){
+        strength = "Strong"
+    } else{
+        strength = "Very Strong"
+    }
+
+    return{
+        score: score, strength: strength
+    };
+
+    
 }
